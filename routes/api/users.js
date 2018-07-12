@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
-const bcryptjs = require ('bcryptjs')
+const bcrypt = require ('bcryptjs')
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
@@ -15,7 +15,7 @@ const validateLoginInput = require('../../validation/login');
 //User Model loading
 const User = require('../../models/User');
 
-router.get('/test', (req, res) => res.json({msg: "User Works"}));
+router.get('/test', (req, res) => res.json({msg: "Users Works"}));
 
 router.post('/register', (req, res) => {
     const {errors, isValid} = validateRegisterInput(req.body);
@@ -26,6 +26,9 @@ router.post('/register', (req, res) => {
         return res.status(400).json(errors)
     }
     User.findOne({email: req.body.email})
+
+    //.then = promise 
+
     .then(user => {
         if(user) {
             errors.email = 'Email already exists';
@@ -110,6 +113,7 @@ res.json({
     name: req.user.name,
     email: req.user.email
 });
+
 });
 
 module.exports = router;
