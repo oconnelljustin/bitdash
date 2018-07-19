@@ -7,8 +7,8 @@ const keys = require('../config/keys');
 
 
 
-app.use(passport.initialize());
-require("./config/passport")(passport);
+//app.use(passport.initialize());
+//require("./config/passport")(passport);
 
 
 const opts = {};
