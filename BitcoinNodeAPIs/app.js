@@ -10,7 +10,8 @@ http.createServer(function(req,res){
         url: "https://blockchain.info/stats?format=json",
         json: true
     }, function(error, response, body){
-    console.log(body.market_price_usd);
+    //console.log(body.market_price_usd);
+    res.send(body.market_price_usd);
 
     });
 console.log("hi I'm a new bitcoin user" + req.url);

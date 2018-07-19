@@ -4,13 +4,17 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
+//const jwt = require ('jsonwebtoken')
 
-//const users = require('./routes/api/users');
-//const profile = require('./routes/api/profile');
-// const posts = require('./routes/api/posts');
+const users = require('./routes/api/users');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
 const app = express();
 
+
+
+//bodyParser
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,6 +26,8 @@ const db = require('./config/keys').mongoURI;
 
 //Mongo Config
 
+
+
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => console.log('MongoDB Connected'))
@@ -29,15 +35,19 @@ mongoose
 
 //Passport middle-ware
 
-//app.use(passport.initialize());
 
-//require('./config/passport')(passport);
+
+app.use(passport.initialize());
+//require("./config/passport")(passport);
+
+
+
 
 //Routes for use
 
-//app.use('/api/users', users);
-//app.use('/api/profile', profile);
-//app.use('/api/posts', posts);
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
@@ -48,8 +58,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(process.env.PORT || 5000, function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-  });
+   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+   
+});
 
 
 //const port = process.env.PORT || 5000;
