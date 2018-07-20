@@ -46,8 +46,8 @@ app.use(passport.initialize());
 //Routes for use
 
 app.use('/api/users', users);
-app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+//app.use('/api/profile', profile);
+//app.use('/api/posts', posts);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
