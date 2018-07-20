@@ -7,8 +7,8 @@ const path = require('path');
 //const jwt = require ('jsonwebtoken')
 
 const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
+//const profile = require('./routes/api/profile');
+//const posts = require('./routes/api/posts');
 
 const app = express();
 
